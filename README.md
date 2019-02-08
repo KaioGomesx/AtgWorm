@@ -3,10 +3,12 @@ script pra rodar comandos de ATG's em massa
 
 # necessario:
 PwnLib
+
 Tor service
+
 and NetCat
 
-# modo de "instalacao"
+# "instalacao"
 
 $ git clone https://github.com/RIS33/AtgWorm
 
