@@ -35,4 +35,4 @@ for L in IpsList:
 	
 		r.close()
 	except Exception:
-		print "erro ao conecta no ip {}" .format(ip)
+		print "erro ao conecta no ip {}" .format(L)
