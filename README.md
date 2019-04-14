@@ -14,4 +14,4 @@ $ pip3 install -r requirements.txt
 $ chmod +x AtgWorm.py
 
 # Modo de usar:
-$ python3 AtgWorm.py -h
+$ python AtgWorm.py -h
