@@ -9,7 +9,7 @@ $ sudo apt install tor
 
 $ git clone https://github.com/RIS33/AtgWorm
 
-$ pip3 install -r requirements.txt
+$ pip install -r requirements.txt
 
 $ chmod +x AtgWorm.py
 
