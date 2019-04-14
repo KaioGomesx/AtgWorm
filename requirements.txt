@@ -1,2 +1,2 @@
-pwn==1.0
-pwntools==3.12.2
+pwn
+pwntools
