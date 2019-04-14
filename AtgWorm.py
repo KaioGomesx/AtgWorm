@@ -1,6 +1,8 @@
 """
 	by @ozym4ndias @Risezin at telegram
 paper que inspirou script: https://telegra.ph/Hackeando-tanques-de-combust%C3%ADvelATG-02-03
+
+Versão 2.0
 """
 from pwn import *
 from time import sleep
