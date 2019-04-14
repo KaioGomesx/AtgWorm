@@ -49,3 +49,6 @@ for ip in ips:
 		# caso nao consiga se conectar no ip vai para o proximo da lista
 		print "erro ao conectar ao ip %s:10001" % ip
 		pass
+
+if sys.argv[1] == "-h":
+	print("Modo de uso:\nVocê deve passar como parâmetro um arquivo .txt contendo os ip's que o script irá usar,exemplo:\n$ python3 AtgWorm.py alvos.txt")
