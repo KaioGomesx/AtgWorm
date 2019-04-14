@@ -22,12 +22,12 @@ print(banner)
 
 # help option
 if sys.argv[1] == "-h":
-	print("\t\t\t\t\t\tModo de uso:\n\t\t\t\t\t\tVoce deve passar como parametro um arquivo .txt contendo os ip's que o script ira usar, exemplo:\n\t\t\t\t\t\t$ python AtgWorm.py alvos.txt\n\n")
+	print("\t\t\t\t\t\tModo de uso:\n\t\t\t\t\t\tVoce deve passar como parametro um arquivo .txt contendo os ip's que o script ira usar, exemplo:\n\t\t\t\t\t\t$ python AtgWorm.py -f alvos.txt\n\n")
 	exit()
-# add ipList at list(use shodan to search)
-arquivo = open(sys.argv[1])
-ips = arquivo.readlines()
-
+elif sys.argv.[1] == "-f":
+	arquivo = open(sys.argv[2])
+	ips = arquivo.readlines()
+	
 # usa proxy do tor durante as conexoes
 context.proxy = (socks.SOCKS5, 'localhost', 9050)
 # pega seu IP
