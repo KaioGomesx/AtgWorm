@@ -13,7 +13,7 @@ script pra rodar comandos de ATG's em massa
 
 `$ pip install -r /AtgWorm/requirements.txt`
 
-`cd AtgWorm && chmod +x AtgWorm.py`
+`$ cd AtgWorm && chmod +x AtgWorm.py`
 
 # Modo de usar:
 `$ python AtgWorm.py -h`
