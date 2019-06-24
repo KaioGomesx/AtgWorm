@@ -3,15 +3,17 @@ script pra rodar comandos de ATG's em massa
 
 # Tenha o serviço do Tor instalado, se não tiver:
 
-$ sudo apt install tor
+**Debian e derivados:**
+
+`$ sudo apt install tor`
 
 # instalação
 
-$ git clone https://github.com/RIS33/AtgWorm
+`$ git clone https://github.com/RIS33/AtgWorm`
 
-$ pip install -r requirements.txt
+`$ pip install -r /AtgWorm/requirements.txt`
 
-$ chmod +x AtgWorm.py
+`cd AtgWorm && chmod +x AtgWorm.py`
 
 # Modo de usar:
-$ python AtgWorm.py -h
+`$ python AtgWorm.py -h`
